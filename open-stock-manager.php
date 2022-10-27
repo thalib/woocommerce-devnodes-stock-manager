@@ -3,7 +3,7 @@
  * Plugin Name:       Fast Stock Manager
  * Plugin URI:        https://github.com/thalib/woocommerce-faststock-manager
  * Description:       Open Source Stock Manager for Woocommerce
- * Version:           0.0.1
+ * Version:           1.0.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Mohamed Thalib H
