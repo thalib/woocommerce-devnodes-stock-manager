@@ -15,6 +15,8 @@
  * Domain Path:       /languages
  */
 
+require_once(plugin_dir_path(__FILE__) . 'includes/StockManager.php');
+require_once(plugin_dir_path(__FILE__) . 'includes/ProductCostPrice.php');
 
 ##########  Add a page for Product > Stock Manager
 
@@ -33,8 +35,8 @@ function faststock_manager_admin_menu()
 	//Quick link import/export of orders
     add_submenu_page(
         'edit.php?post_type=product',
-        __('Import Products', 'fastdep'),
-        __('Import Products', 'fastdep'),
+        __('Import Products', 'faststock'),
+        __('Import Products', 'faststock'),
         'read',
         'edit.php?post_type=product&page=product_importer', //slug
         '', //hook
@@ -42,8 +44,8 @@ function faststock_manager_admin_menu()
 
     add_submenu_page(
         'edit.php?post_type=product',
-        __('Export Products', 'fastdep'),
-        __('Export Products', 'fastdep'),
+        __('Export Products', 'faststock'),
+        __('Export Products', 'faststock'),
         'read',
         'edit.php?post_type=product&page=product_exporter', //slug
         '', //hook
@@ -52,8 +54,6 @@ function faststock_manager_admin_menu()
 
 function faststock_manager_admin_page()
 {
-	require_once(plugin_dir_path(__FILE__) . 'lib/StockManager.php');
-
     $StockListTable = new FastStock_Management_Table();
 
     ?>
