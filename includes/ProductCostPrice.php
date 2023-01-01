@@ -116,7 +116,7 @@ function faststock_product_custom_field_save($post_id)
 {
     if (!empty($_POST)) {
         if (isset($_POST['faststock_cost_price'])) {
-            update_post_meta($post_id, 'cost_price', sanitize_text_field($_POST['faststock_cost_price']));
+            update_post_meta($post_id, 'cost_price', wc_clean($_POST['faststock_cost_price']));
         }
 
         // Checkbox - either case update the value

@@ -58,15 +58,17 @@ class FastStock_Management_Table extends WP_List_Table
             case 'price':
             case 'cost':
             case 'quantity':
+                $value = empty($item[$column_name]) ? "0" : $item[$column_name];
                 ?>
-                    <input type="number" class="input-text"  style="width: 80px;" name="product_data[<?php echo $item['ID'] ?>][<?php echo $column_name ?>]" placeholder="<?php echo $item[$column_name] ?>"/>
+                    <input type="number" class="input-text"  style="width: 80px;" name="product_data[<?php echo $item['ID'] ?>][<?php echo $column_name ?>]" placeholder="<?php echo $value ?>" value="<?php echo $value ?>"/>
                 <?php
-break;
+                break;
             case 'weight':
+                $value = empty($item[$column_name]) ? "0" : $item[$column_name];
                 ?>
-                    <input type="number" class="input-text"  style="width: 80px;" name="product_data[<?php echo $item['ID'] ?>][<?php echo $column_name ?>]" placeholder="<?php echo $item[$column_name] ?>" step=".001"/>
+                    <input type="number" class="input-text"  style="width: 80px;" name="product_data[<?php echo $item['ID'] ?>][<?php echo $column_name ?>]" placeholder="<?php echo $value ?>" step=".001" value="<?php echo $value ?>"/>
                 <?php
-break;
+                break;
 
             default:
                 return print_r($item, true); //Show the whole array for troubleshooting purposes
@@ -110,7 +112,7 @@ break;
         $hidden = array();
         $sortable = $this->get_sortable_columns();
 
-        $search = !empty($_REQUEST['s']) ? trim(wp_unslash($_REQUEST['s'])) : '';
+        $search = !empty($_REQUEST['s']) ? wc_clean( trim(wp_unslash($_REQUEST['s'])) ) : '';
 
         $this->process_bulk_action();
 
@@ -156,14 +158,21 @@ break;
         );
     }
 
+    
+
+    private function isempty($var) {
+        return !empty($var) || $var === 0 || $var === '0';
+    }
+
+
     public function process_bulk_action()
     {
         //Called when a bulk action is being triggered...
 
         if ('save' === $this->current_action()) {
 
-            $product_ids = $_POST['product_ids'];
-            $product_data = $_POST['product_data'];
+            $product_ids = wc_clean($_POST['product_ids']);
+            $product_data = wc_clean($_POST['product_data']);
 
             if (!empty($product_ids) && !empty($product_data)) {
 
@@ -174,40 +183,40 @@ break;
                     $product = wc_get_product($id);
                     $updated = false;
 
-                    if ($product_data[$id]['mrp']) {
+                    if ( $this->isempty($product_data[$id]['mrp']) ) {
                         $product->set_regular_price($product_data[$id]['mrp']);
                         $updated = true;
                     }
 
-                    if ($product_data[$id]['price']) {
+                    if ( $this->isempty($product_data[$id]['price']) ) {
                         $product->set_price($product_data[$id]['price']);
                         $product->set_sale_price($product_data[$id]['price']);
                         $updated = true;
                     }
 
-                    if ($product_data[$id]['quantity']) {
+                    if ( $this->isempty($product_data[$id]['quantity']) ) {
                         $product->set_stock_quantity($product_data[$id]['quantity']);
                         $updated = true;
                     }
 
-                    if ($product_data[$id]['weight']) {
+                    if ( $this->isempty($product_data[$id]['weight']) ) {
                         $product->set_weight($product_data[$id]['weight']);
                         $updated = true;
                     }
 
-                    if ($product_data[$id]['cost']) {
+                    if ( $this->isempty($product_data[$id]['cost']) ) {
                         update_post_meta($id, 'cost_price', $product_data[$id]['cost']);
                         $updated = true;
                     }
 
                     if ($updated) {
                         $product->save();
-                        $html .= '<p>[' . $id . '] ' . $product->get_name() . '</p>';   
+                        $html .= '<p>[' . $id . '] ' . $product->get_name() . '</p>';
                     }
 
                 } // for
 
-                echo    '<div class="notice notice-success is-dismissible">
+                echo '<div class="notice notice-success is-dismissible">
                         <p><strong>Updated Products</strong></p>
                         ' . $html . '
                         </div>';
