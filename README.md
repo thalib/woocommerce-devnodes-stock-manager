@@ -13,7 +13,7 @@ In Devnodes Stock Manager you can make edits to the following product stock data
 * Quantity
 * Weight
 
-![Devnodes Stock Manager for Woocommerce](screenshot.png)
+![Devnodes Stock Manager for Woocommerce](screenshot.png?raw=true)
 
 
 # Fast - Free - Open Source - Light
