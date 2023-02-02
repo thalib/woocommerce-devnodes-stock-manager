@@ -3,7 +3,7 @@
  * Plugin Name:       Devnodes Stock Manager for Woocommerce
  * Plugin URI:        https://github.com/thalib/woocommerce-devnodes-stock-manager
  * Description:       Open Source Stock Manager for Woocommerce
- * Version:           2.0.1
+ * Version:           2.1.0
  * Requires at least: 5.2
  * Requires PHP:      7.2
  * Author:            Mohamed Thalib H
