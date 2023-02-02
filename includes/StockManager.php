@@ -8,7 +8,7 @@ if (!class_exists('Link_List_Table')) {
     require_once ABSPATH . 'wp-admin/includes/class-wp-list-table.php';
 }
 
-class FastStock_Management_Table extends WP_List_Table
+class Devnodes_Management_Table extends WP_List_Table
 {
 
     public function get_columns()
@@ -41,7 +41,7 @@ class FastStock_Management_Table extends WP_List_Table
         $ptitle = '<a class="row-title" href="' . esc_url($edit_link) . '">' . esc_html($item['ptitle']) . '</a>';
 
         $actions = array(
-            'id' => sprintf(__('ID: %d', 'faststock'), $item['ID']),
+            'id' => sprintf(__('ID: %d', 'devnodes'), $item['ID']),
             'edit' => '<a href="' . esc_url($edit_link) . '">Edit</a>',
             'view' => '<a target="_blank" href="' . esc_url($view_link) . '">View</a>',
         );
@@ -83,7 +83,7 @@ class FastStock_Management_Table extends WP_List_Table
         return $sortable_columns;
     }
 
-    public function faststock_query_to_product($query)
+    public function devnodes_query_to_product($query)
     {
         $rows = array();
         foreach ($query->posts as $post) {
@@ -136,7 +136,7 @@ class FastStock_Management_Table extends WP_List_Table
         ));
 
         //maps the query to products
-        $data = $this->faststock_query_to_product($query);
+        $data = $this->devnodes_query_to_product($query);
 
         //pagination
         $this->set_pagination_args(array(
@@ -154,7 +154,7 @@ class FastStock_Management_Table extends WP_List_Table
     public function get_bulk_actions()
     {
         return array(
-            'save' => __('Save', 'faststock'),
+            'save' => __('Save', 'devnodes'),
         );
     }
 
