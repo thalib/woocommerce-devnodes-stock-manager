@@ -16,14 +16,10 @@ In Devnodes Stock Manager you can make edits to the following product stock data
 ![Devnodes Stock Manager for Woocommerce](screenshot.png?raw=true)
 
 
-# Fast - Free - Open Source - Light
+## Fast - Free - Open Source - Light
 
 ## Contact Us
 
-You can hire me to customize or add more feature to this plugin.
+You can hire us to customize or add more feature to this plugin.
 
-You can reach via [Devnodes.in](https://devnodes.in) 
-
-or 
-
-on github profile [https://github.com/thalib](https://github.com/thalib) 
+You can reach via [Devnodes.in](https://devnodes.in) or [https://github.com/thalib](https://github.com/thalib)
